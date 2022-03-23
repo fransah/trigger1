@@ -13,7 +13,7 @@ jobs:
         if: github.event.action == 'ping'
         run: |
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
-#          curl -X POST https://api.github.com/repos/fransah/trigger-service/dispatches \
-#          -H 'Accept: application/vnd.github.everest-preview+json' \
-#          -u ${{ secrets.ACCESS_TOKEN }} \
-#          --data '{"event_type": "pong", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
+          curl -X POST https://api.github.com/repos/fransah/trigger-service/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.TRIGGER_TEST }} \
+          --data '{"event_type": "pong", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
