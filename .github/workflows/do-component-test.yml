@@ -1,4 +1,4 @@
-name: Component-Test Action Responder
+name: Component-Test Responder
 
 on: [repository_dispatch]
 
