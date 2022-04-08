@@ -16,14 +16,12 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Search
-        run: | 
-          echo "Do search on '${{ github.event.client_payload.search-string }}'"
-          const location = pwd
-          echo "${location}"
-          cd src/main
-          location = pwd
-          echo "${location}"
-
+        run: |
+          search_string='${{ github.event.client_payload.search-string }}'          
+          echo "Do search on '${search_string}'"
+          cd src
+          search_result=$(grep -ior "${search_string}" *)
+          echo "${search_result}"
       - name: Send Result Back
         if: always() && github.event.action == 'do-search-repo'
         uses: peter-evans/repository-dispatch@v2
