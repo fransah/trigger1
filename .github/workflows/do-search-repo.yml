@@ -1,4 +1,4 @@
-name: Component-Test Responder
+name: Search Result Responder
 
 on: [repository_dispatch]
 
