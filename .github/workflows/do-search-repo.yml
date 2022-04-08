@@ -16,7 +16,11 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Search
-        run: echo "Do search on '${{ github.event.client_payload.search-string }}'"
+        run: | 
+          echo "Do search on '${{ github.event.client_payload.search-string }}'"
+          echo pwd
+          cd src/main
+          echo pwd
 
       - name: Send Result Back
         if: always() && github.event.action == 'do-search-repo'
