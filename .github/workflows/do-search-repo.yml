@@ -18,9 +18,11 @@ jobs:
       - name: Search
         run: | 
           echo "Do search on '${{ github.event.client_payload.search-string }}'"
-          echo pwd
+          const location = pwd
+          echo "${location}"
           cd src/main
-          echo pwd
+          location = pwd
+          echo "${location}"
 
       - name: Send Result Back
         if: always() && github.event.action == 'do-search-repo'
