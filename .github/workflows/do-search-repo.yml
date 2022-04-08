@@ -14,6 +14,7 @@ jobs:
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
           echo "Event Type '${{ github.event.event_type }}'"
           echo "Search String:  '${{ github.event.client_payload.search-string }}'"
+
       - name: Checkout
         uses: actions/checkout@v1
 
@@ -24,6 +25,7 @@ jobs:
           cd src
           search_result=$(grep -ior "${search_string}" *)
           echo "${search_result}"
+
       - name: Send Result Back
         if: always() #&& github.event.action == 'do-search-repo'
         uses: peter-evans/repository-dispatch@v2

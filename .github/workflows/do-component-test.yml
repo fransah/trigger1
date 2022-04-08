@@ -13,10 +13,7 @@ jobs:
         run: |
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
           echo "Event Type '${{ github.event.event_type }}'"
-      #      - name: Do Tests
-      #        if: github.event.action == 'do-component-test'
-      #        run: |
-      #          echo "Event Do my very difficult test"
+
       - name: Checkout
         uses: actions/checkout@v1
 
@@ -40,7 +37,7 @@ jobs:
           path: target/surefire-reports/*.xml
           reporter: java-junit
           fail-on-error: false
-      ###
+
       - name: Send Result Back
         if: always() #&& github.event.action == 'do-component-test'
         uses: peter-evans/repository-dispatch@v2
