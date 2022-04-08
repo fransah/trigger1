@@ -1,13 +1,15 @@
 name: Component-Test Responder
 
-on: [repository_dispatch]
+on:
+  repository_dispatch:
+    types: [do-component-test]
 
 jobs:
   run-test:
     runs-on: ubuntu-latest
     steps:
       - name: Event Information
-        if: github.event.action == 'do-component-test'
+        #if: github.event.action == 'do-component-test'
         run: |
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
           echo "Event Type '${{ github.event.event_type }}'"
@@ -40,7 +42,7 @@ jobs:
           fail-on-error: false
       ###
       - name: Send Result Back
-        if: always() && github.event.action == 'do-component-test'
+        if: always() #&& github.event.action == 'do-component-test'
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.TRIGGER_TEST1 }}

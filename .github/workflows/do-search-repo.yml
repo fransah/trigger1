@@ -1,13 +1,15 @@
 name: Search Result Responder
 
-on: [repository_dispatch]
+on:
+  repository_dispatch:
+    types: [ do-search-repo ]
 
 jobs:
   search-text:
     runs-on: ubuntu-latest
     steps:
       - name: Event Information
-        if: github.event.action == 'do-search-repo'
+        #if: github.event.action == 'do-search-repo'
         run: |
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
           echo "Event Type '${{ github.event.event_type }}'"
@@ -23,7 +25,7 @@ jobs:
           search_result=$(grep -ior "${search_string}" *)
           echo "${search_result}"
       - name: Send Result Back
-        if: always() && github.event.action == 'do-search-repo'
+        if: always() #&& github.event.action == 'do-search-repo'
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.TRIGGER_TEST1 }}
