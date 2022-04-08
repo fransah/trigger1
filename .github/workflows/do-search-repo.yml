@@ -27,8 +27,6 @@ jobs:
           search_result=$(grep -ior "${search_string}" *)
           echo "${search_result}"
           echo "::set-output name=search-output::$search_result"
-          
-          echo "Some Result: ${{ steps.search.outputs.search-output }}"
 
       - name: Send Result Back
         if: always() #&& github.event.action == 'do-search-repo'
