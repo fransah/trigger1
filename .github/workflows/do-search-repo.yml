@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Search
+        id: search
         run: |
           search_string='${{ github.event.client_payload.search-string }}'          
           echo "Do search on '${search_string}'"
@@ -27,7 +28,7 @@ jobs:
           echo "${search_result}"
           echo "::set-output name=search-output::$search_result"
           
-          echo "Some Result: ${{ steps.Search.outputs.search-output }}"
+          echo "Some Result: ${{ steps.search.outputs.search-output }}"
 
       - name: Send Result Back
         if: always() #&& github.event.action == 'do-search-repo'
@@ -36,4 +37,4 @@ jobs:
           token: ${{ secrets.TRIGGER_TEST1 }}
           repository: ${{ github.event.client_payload.repository }}
           event-type: my-search-result
-          client-payload: '{"repository": "${{github.repository}}", "result": "${{job.status}}",  "foundResults": "${{ steps.Search.outputs.search-output }}" }'
+          client-payload: '{"repository": "${{github.repository}}", "result": "${{job.status}}",  "foundResults": "${{ steps.search.outputs.search-output }}" }'
