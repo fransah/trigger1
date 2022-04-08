@@ -1,0 +1,28 @@
+name: Component-Test Responder
+
+on: [repository_dispatch]
+
+jobs:
+  search-text:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Event Information
+        if: github.event.action == 'do-search-repo'
+        run: |
+          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
+          echo "Event Type '${{ github.event.event_type }}'"
+          echo "Search String:  '${{ github.event.client_payload.search-string }}'"
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Search
+        run: echo "Do search on '${{ github.event.client_payload.searchString }}'"
+
+      - name: Send Result Back
+        if: always() && github.event.action == 'do-search-repo'
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.TRIGGER_TEST1 }}
+          repository: ${{ github.event.client_payload.repository }}
+          event-type: my-search-result
+          client-payload: '{"repository": "${{github.repository}}", "result": "${{job.status}}",  "foundResults": "My Result String" }'
