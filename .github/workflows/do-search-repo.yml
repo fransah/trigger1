@@ -6,6 +6,7 @@ on:
 
 jobs:
   search-text:
+    ${{ github.event.client_payload.search-string }}
     runs-on: ubuntu-latest
     steps:
       - name: Event Information
@@ -18,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Search
+      - name: Search for '${{ github.event.client_payload.search-string }}'
         id: search
         run: |
           search_string='${{ github.event.client_payload.search-string }}'          
