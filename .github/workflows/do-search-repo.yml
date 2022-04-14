@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Search for '${{ github.event.client_payload.search-string }}'
+      - name: Search
         id: search
         run: |
           search_string='${{ github.event.client_payload.search-string }}'          
@@ -36,4 +36,4 @@ jobs:
           token: ${{ secrets.TRIGGER_TEST1 }}
           repository: ${{ github.event.client_payload.repository }}
           event-type: my-search-result
-          client-payload: '{"repository": "${{github.repository}}", "result": "${{job.status}}",  "foundResults": "${{ steps.search.outputs.search-output }}" }'
+          client-payload: '{"repository": "${{github.repository}}", "result": "${{job.status}}",  "foundResults": "${{ steps.search.outputs.search-output }}", "search-string": "${{ github.event.client_payload.search-string }}" }'
