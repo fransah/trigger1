@@ -26,7 +26,6 @@ jobs:
         run: mvn --batch-mode -DskipTests package
 
       - name: Test
-        #run: mvn --no-transfer-progress -Dmaven.test.failure.ignore=false verify -P component,integration
         run: mvn --no-transfer-progress -Dmaven.test.failure.ignore=false verify -P ${{ github.event.client_payload.type-test }}
 
       - name: ReportSurefire

@@ -19,24 +19,6 @@
 		<rest-assured.version>4.5.1</rest-assured.version>
 	</properties>
 
-<!--	<profiles>-->
-<!--		&lt;!&ndash; Profiles are generally configured by the pipeline, when deploying to environments or reaching certain test stages &ndash;&gt;-->
-<!--		<profile>-->
-<!--			&lt;!&ndash; When reaching component test stage, disable the other JUnit categories &ndash;&gt;-->
-<!--			<id>component</id>-->
-<!--			<properties>-->
-<!--				<skipTests>true</skipTests>-->
-<!--				<skipITs>false</skipITs>-->
-<!--				<excludedGroups>-->
-<!--					LoadTests,-->
-<!--					E2ETests-->
-<!--				</excludedGroups>-->
-<!--				<stage>component</stage>-->
-<!--			</properties>-->
-<!--		</profile>-->
-<!--	</profiles>-->
-
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
