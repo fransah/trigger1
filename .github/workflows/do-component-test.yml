@@ -31,8 +31,8 @@ jobs:
         #-P component,integration
 
       - name: ReportSurefire
+        if: ${{ github.event.client_payload.type-test }} != 'component/integration'
         uses: dorny/test-reporter@v1
-        if: "${{ github.event.client_payload.type-test }}" != "component/integration"
         with:
           name: Maven Junit Tests
           path: target/surefire-reports/*Test.xml
@@ -40,8 +40,8 @@ jobs:
           fail-on-error: false
 
       - name: ReportFailsafe
+        if: ${{ github.event.client_payload.type-test }} != 'junit'
         uses: dorny/test-reporter@v1
-        if: "${{ github.event.client_payload.type-test }}" != "junit"
         with:
           name: Maven Component/Integration Tests
           path: target/failsafe-reports/*Test.xml
