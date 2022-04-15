@@ -27,7 +27,7 @@ jobs:
 
       - name: Test
         #run: mvn --batch-mode -Dmaven.test.failure.ignore=false verify -P component
-        run: mvn --no-transfer-progress -Dmaven.test.failure.ignore=false verify -Pcomponent -Pintegration
+        run: mvn --no-transfer-progress -Dmaven.test.failure.ignore=false verify -Pcomponent
 
       - name: Report Surefire
         uses: dorny/test-reporter@v1
