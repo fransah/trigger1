@@ -27,15 +27,15 @@ jobs:
 
       - name: Test
         #run: mvn --batch-mode -Dmaven.test.failure.ignore=false verify -P component
-        run: mvn --no-transfer-progress -Dmaven.test.failure.ignore=false verify -P component
+        run: mvn --no-transfer-progress -Dmaven.test.failure.ignore=false verify #-P component
 
       - name: Report
         uses: dorny/test-reporter@v1
         if: always()
         with:
           name: Maven Tests
-          #path: target/surefire-reports/*.xml
-          path: target/failsafe-reports/*.xml
+          path: target/surefire-reports/*.xml
+          #path: target/failsafe-reports/*.xml
           reporter: java-junit
           fail-on-error: false
 
