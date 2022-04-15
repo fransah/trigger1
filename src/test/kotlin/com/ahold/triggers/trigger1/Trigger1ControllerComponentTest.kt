@@ -21,7 +21,7 @@ import org.springframework.boot.web.server.LocalServerPort
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("build-local")
-internal class Trigger1ControllerIntegrationTest {
+internal class Trigger1ControllerComponentTest {
 
     @Value("\${test.hostUrl}")
     lateinit var hostUrl: String

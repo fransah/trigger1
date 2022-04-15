@@ -26,7 +26,8 @@ jobs:
         run: mvn --batch-mode -DskipTests package
 
       - name: Test
-        run: mvn --batch-mode -Dmaven.test.failure.ignore=false verify -P component
+        #run: mvn --batch-mode -Dmaven.test.failure.ignore=false verify -P component
+        run: mvn --no-transfer-progress -Dmaven.test.failure.ignore=false verify -P component
 
       - name: Report
         uses: dorny/test-reporter@v1
